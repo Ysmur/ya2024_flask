@@ -9,7 +9,7 @@ def index():
 
 @app.route('/index')
 def index1():
-    with open('templates/image_mars.html', 'r', encoding='utf-8') as stream:
+    with open('templates/otbor.html', 'r', encoding='utf-8') as stream:
         return stream.read()
 
 
