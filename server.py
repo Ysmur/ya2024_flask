@@ -12,6 +12,12 @@ def index(title):
 def training(prof):
     return render_template('training.html', prof=prof)
 
+@app.route('/list_prof/<marker>')
+def list_prof(marker):
+    with open("static/resource/prof.txt", encoding='utf-8') as f:
+        data = f.readlines()
+    return render_template('list_prof.html', marker=marker, data=data)
+
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
