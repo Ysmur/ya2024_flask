@@ -1,6 +1,7 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, redirect
+from loginform import LoginForm
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
 @app.route('/<title>')
@@ -33,6 +34,19 @@ def answer():
     data['ready'] = True
     return render_template('auto_answer.html', data=data)
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    print(form.username)
+    if form.validate_on_submit():
+        return redirect('/success')
+    return render_template('login.html', title='Авторизация', form=form)
+
+
+@app.route('/success')
+def success():
+    return render_template('base.html', title="Успешно")
 
 
 if __name__ == '__main__':
