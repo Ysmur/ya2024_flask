@@ -1,16 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
-@app.route('/')
-def index():
-    return "Привет, Яндекс!"
-
-@app.route('/index')
-def index1():
-    with open('templates/otbor.html', 'r', encoding='utf-8') as stream:
-        return stream.read()
+@app.route('/<title>')
+@app.route('/index/<title>')
+def index(title):
+    return render_template('base.html', title=title)
 
 
 if __name__ == '__main__':
