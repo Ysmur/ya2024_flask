@@ -31,9 +31,9 @@ def reqister():
             name=form.name.data,
             surname=form.surname.data,
             email=form.email.data,
-            hashed_password=form.password.data
+            #  hashed_password=form.password.data
         )
-        # user.set_password(form.password.data)
+        user.set_password(form.password.data)
         db_sess.add(user)
         db_sess.commit()
         return redirect('/')
