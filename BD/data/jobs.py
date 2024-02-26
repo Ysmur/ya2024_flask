@@ -21,4 +21,6 @@ class Job(SqlAlchemyBase):
     is_finished = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
     user = orm.relationship('User')
 
+    def __repr__(self):
+        return f'<Job> {self.id} {self.job} {self.user}'
 
