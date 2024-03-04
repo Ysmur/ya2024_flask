@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, jsonify
 from data import db_session, jobs_api
 from data.users import User
 from data.jobs import Job
@@ -85,6 +85,17 @@ def addjob():
 def logout():
     logout_user()
     return redirect("/")
+
+from flask import make_response
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
+
+
+@app.errorhandler(400)
+def bad_request(_):
+    return make_response(jsonify({'error': 'Bad Request'}), 400)
 
 
 def main():
