@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, make_response
 from data import db_session, users_resource
 from data.users import User
 from data.jobs import Job
